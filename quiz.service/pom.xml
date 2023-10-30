@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.anirban</groupId>
-	<artifactId>question.service</artifactId>
+	<artifactId>quiz.service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>question.service</name>
-	<description>Question service for making Quiz app using microservice approach </description>
+	<name>quiz.service</name>
+	<description>This microservice is the part of app quiz-app and will interact with question.service</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2022.0.4</spring-cloud.version>
@@ -27,20 +27,14 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-		<!--<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>-->
-
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -69,14 +63,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
