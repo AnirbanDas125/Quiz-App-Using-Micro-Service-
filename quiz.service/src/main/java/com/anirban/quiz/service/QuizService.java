@@ -47,23 +47,10 @@ public class QuizService {
 		return new ResponseEntity<>(questionForUser,HttpStatus.OK);
 	}
 
-	public ResponseEntity<Integer> getQuizScore(int id, List<Response> response) {
+	public ResponseEntity<String> getQuizScore(int id, List<Response> response) {
 		
-		Optional<Quiz> q = quizDao.findById(id);
-		if(q.isEmpty()) {
-			throw new RuntimeException("Could not find a quiz by ID "+id);
-		}
-		Quiz quiz = q.get();
-//		List<Question> questions = quiz.getQuestions();
-//		
-		int score =0;
-//		int i=0;
-//		for(Question q1 : questions) {
-//		  if(q1.getCorrect_answer().equals(response.get(i).getResponse())) {
-//			 score++; 
-//		  }
-//		  i++;
-//		}
+		String score = quizInterface.getScore(response).getBody();
+		
 		
 		return new ResponseEntity<>(score,HttpStatus.OK);
 	}
