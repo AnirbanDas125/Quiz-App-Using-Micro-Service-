@@ -3,6 +3,7 @@ package com.anirban.quiz.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,22 +32,17 @@ public class QuizService {
 
 	public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(int quiz_id) {
 		
-//		Optional<Quiz> quiz = quizDao.findById(quiz_id);
-//		
-//		if(quiz.isEmpty()) {
-//			throw new RuntimeException("Quiz could not be found by ID "+quiz_id);
-//		}
-//		List<Question> questionFromDB = quiz.get().getQuestions();
-		List<QuestionWrapper> questionForUser = new ArrayList<>();
-//		
-//		for(Question q : questionFromDB) {
-//			QuestionWrapper qw = new 
-//					QuestionWrapper(q.getId(),q.getOption1(),q.getOption2(),q.getOption3(),q.getOption4(),q.getQuestion_title());
-//			
-//			
-//			questionForUser.add(qw);
-//			
-//		}
+		Optional<Quiz> quizById = quizDao.findById(quiz_id);
+		if(quizById.isEmpty()) {
+			throw new RuntimeException("Could not find a quiz by ID "+quiz_id);
+		}
+			List<Integer> questionIdsByQuizId = quizById.get().getQuestionsIds();
+			List<QuestionWrapper> questionForUser = quizInterface.getQuestionById(questionIdsByQuizId.stream()
+	                .map(Long::valueOf) 
+	                .collect(Collectors.toList())).getBody();
+		
+		
+
 		
 		return new ResponseEntity<>(questionForUser,HttpStatus.OK);
 	}

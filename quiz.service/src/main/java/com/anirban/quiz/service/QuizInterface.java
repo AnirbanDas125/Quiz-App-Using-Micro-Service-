@@ -21,7 +21,7 @@ public interface QuizInterface {
 	@PostMapping("question/getQuestions")//Have to mention the full URL in the question.service controller
 	public ResponseEntity<List<QuestionWrapper>> getQuestionById(@RequestBody List<Long> questionsIds);
 	
-	@PostMapping("question/getScore")
+	@PostMapping("question/getScore")//
 	public ResponseEntity<String> getScore(@RequestBody List<Response> responses);
 
 }
